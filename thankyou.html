@@ -1,1 +1,20 @@
+<!doctype html><html lang="bg"><head><meta charset="utf-8"><title>Благодаря</title></head><body>
+  <h1>Благодарим за покупката!</h1>
+  <div id="content">Проверка…</div>
 
+  <script>
+    async function init(){
+      const params = new URLSearchParams(location.search);
+      const sid = params.get('session_id');
+      if (!sid) { document.getElementById('content').innerText = 'Няма session_id.'; return; }
+      const res = await fetch(`/.netlify/functions/verify-session?session_id=${sid}`);
+      const data = await res.json();
+      if (data.ok) {
+        document.getElementById('content').innerHTML = `<p>Свалете книгата: <a href="${data.downloadUrl}">Изтегли PDF</a></p>`;
+      } else {
+        document.getElementById('content').innerText = 'Плащането не е потвърдено.';
+      }
+    }
+    init();
+  </script>
+</body></html>
