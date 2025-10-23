@@ -11,7 +11,7 @@ exports.handler = async (event) => {
       line_items: [{
         price_data: {
           currency: 'eur',
-          product_data: { name: 'Електронна книга — Заглавие' },
+          product_data: { name: 'Султана Суружон' },
           unit_amount: 999, // 9.99 EUR -> 999 cents
         },
         quantity: 1,
