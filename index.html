@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Заглавие на книгата — Купи сега</title>
+  <meta name="description" content="Разкрийте завладяващото пътешествие на епичната приказка на една легендарна султанка.
+Потопете се в спиращ дъха разказ, който възкресява забравени балкански легенди, преплитайки историческа дълбочина с дълбоки човешки емоции и трансформиращо разказване на истории.
+Разгледайте завладяващия визуален свят на султанка Суружон чрез спиращи дъха образи.">
+</head>
+<body style="font-family:system-ui,Arial,Helvetica,sans-serif;max-width:780px;margin:40px auto;">
+  <header>
+    <h1>Заглавие на книгата</h1>
+    <p><strong>Подзаглавие:</strong> Какво печели читателя — 1 линия.</p>
+  </header>
+
+  <section>
+    <h3>Защо тази книга?</h3>
+    <ul>
+      <li>Кратък ключов предимство 1</li>
+      <li>Кратък ключов предимство 2</li>
+      <li>Кратък ключов предимство 3</li>
+    </ul>
+  </section>
+
+  <section>
+    <p><strong>Цена:</strong> 9.99 EUR</p>
+    <!-- бутон който вика serverless функция за checkout -->
+    <button id="buyBtn">Купи сега — 9.99€</button>
+  </section>
+
+  <script>
+    document.getElementById('buyBtn').addEventListener('click', async () => {
+      const res = await fetch('/.netlify/functions/create-checkout-session', { method: 'POST' });
+      const data = await res.json();
+      if (data.url) window.location = data.url;
+      else alert('Грешка при плащане');
+    });
+  </script>
+</body>
+</html>
